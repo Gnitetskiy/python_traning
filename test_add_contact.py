@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from selenium import webdriver
 import unittest
+from new_contact_data import New_Contact_Data
 
 class test_add_contact(unittest.TestCase):
     def setUp(self):
@@ -12,8 +13,7 @@ class test_add_contact(unittest.TestCase):
         self.open_home_page(wd)
         self.login(wd)
         self.open_add_new_page(wd)
-        self.add_new_contact(wd, "Alex", "Ivanov", "Mockow City", "testmail@mail.ru", "testmail2@mail.ru",
-                             "testmail3@mail.ru", "12345", "54321", "67890", "09876")
+        self.add_new_contact(wd, New_Contact_Data(firstname = "Alex", lastname = "Ivanov", address = "Mockow City", email1 = "testmail@mail.ru", email2 = "testmail2@mail.ru", email3 = "testmail3@mail.ru", homephone ="12345", mobilephone = "54321", workphone = "67890", fax = "09876"))
         self.return_to_home_page(wd)
         self.logout(wd)
 
@@ -23,39 +23,38 @@ class test_add_contact(unittest.TestCase):
     def return_to_home_page(self, wd):
         wd.find_element_by_link_text("home page").click()
 
-    def add_new_contact(self, wd, firsname, lastname, address, email1, email2, email3, homephone, mobilephone,
-                        workphone, fax):
+    def add_new_contact(self, wd, New_Contact_Data):
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
-        wd.find_element_by_name("firstname").send_keys(firsname)
+        wd.find_element_by_name("firstname").send_keys(New_Contact_Data.firstname)
         wd.find_element_by_name("lastname").click()
         wd.find_element_by_name("lastname").clear()
+        wd.find_element_by_name("lastname").send_keys(New_Contact_Data.lastname)
         wd.find_element_by_name("address").click()
-        wd.find_element_by_name("lastname").send_keys(lastname)
         wd.find_element_by_name("address").clear()
-        wd.find_element_by_name("address").send_keys(address)
+        wd.find_element_by_name("address").send_keys(New_Contact_Data.address)
         wd.find_element_by_name("home").click()
         wd.find_element_by_name("email").click()
         wd.find_element_by_name("email").clear()
-        wd.find_element_by_name("email").send_keys(email1)
+        wd.find_element_by_name("email").send_keys(New_Contact_Data.email1)
         wd.find_element_by_name("email2").click()
         wd.find_element_by_name("email2").clear()
-        wd.find_element_by_name("email2").send_keys(email2)
+        wd.find_element_by_name("email2").send_keys(New_Contact_Data.email2)
         wd.find_element_by_name("email3").click()
         wd.find_element_by_name("email3").clear()
-        wd.find_element_by_name("email3").send_keys(email3)
+        wd.find_element_by_name("email3").send_keys(New_Contact_Data.email3)
         wd.find_element_by_name("home").click()
         wd.find_element_by_name("home").clear()
-        wd.find_element_by_name("home").send_keys(homephone)
+        wd.find_element_by_name("home").send_keys(New_Contact_Data.homephone)
         wd.find_element_by_name("mobile").click()
         wd.find_element_by_name("mobile").clear()
-        wd.find_element_by_name("mobile").send_keys(mobilephone)
+        wd.find_element_by_name("mobile").send_keys(New_Contact_Data.mobilephone)
         wd.find_element_by_name("work").click()
         wd.find_element_by_name("work").clear()
-        wd.find_element_by_name("work").send_keys(workphone)
+        wd.find_element_by_name("work").send_keys(New_Contact_Data.workphone)
         wd.find_element_by_name("fax").click()
         wd.find_element_by_name("fax").clear()
-        wd.find_element_by_name("fax").send_keys(fax)
+        wd.find_element_by_name("fax").send_keys(New_Contact_Data.fax)
         wd.find_element_by_name("theform").click()
         wd.find_element_by_xpath("//div[@id='content']/form/input[20]").click()
 
