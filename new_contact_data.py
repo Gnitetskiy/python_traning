@@ -1,4 +1,4 @@
-class New_Contact_Data:
+class ContactData:
     def __init__(self, firstname, lastname, address, email1, email2, email3, homephone, mobilephone, workphone, fax):
         self.firstname = firstname
         self.lastname = lastname
