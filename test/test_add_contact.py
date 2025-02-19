@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import pytest
-from application import Application
-from new_contact_data import ContactData
+from fixture.application import Application
+from model.new_contact_data import ContactData
 
 @pytest.fixture
 def app(request):
