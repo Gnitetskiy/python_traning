@@ -6,7 +6,7 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_element_by_link_text("add new").click()
 
-    def add_new_contact(self, new_contact_data):
+    def fill_contact_data(self, new_contact_data):
         wd = self.app.wd
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
@@ -58,7 +58,7 @@ class ContactHelper:
         wd.find_element_by_name("selected[]").click()
         # edit contact
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
-        self.add_new_contact(new_contact_data)
+        self.fill_contact_data(new_contact_data)
         # click to update
         wd.find_element_by_name("update").click()
 
