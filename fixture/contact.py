@@ -4,7 +4,8 @@ class ContactHelper:
 
     def open_add_new_page(self):
         wd = self.app.wd
-        wd.find_element_by_link_text("add new").click()
+        if  not (wd.current_url.endswith("/edit.php") and len(wd.find_elements_by_xpath("//div[@id='content']/form/input[20]")) >0):
+            wd.find_element_by_link_text("add new").click()
 
     def fill_contact_data(self, new_contact_data):
         wd = self.app.wd
