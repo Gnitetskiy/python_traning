@@ -83,6 +83,8 @@ class ContactHelper:
         self.open_contact_page()
         contacts=[]
         for element in wd.find_elements_by_name("entry"):
-            id = element.find_element_by_xpath("//input").get_attribute("value")
-            contacts.append(ContactData(id=id))
+            id = element.find_element_by_xpath("//div[@id='content']/form[2]//input").get_attribute("value")
+            lastname = element.find_element_by_xpath("//td[2]").text
+            firstname = element.find_element_by_xpath("//td[3]").text
+            contacts.append(ContactData(id=id,lastname=lastname,firstname=firstname  ))
         return contacts

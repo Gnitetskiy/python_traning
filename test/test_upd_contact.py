@@ -9,6 +9,10 @@ def test_upd_first_contact(app):
                         workphone="67890", fax="09876"))
         app.contact.enter_add_new_contact()
     app.contact.open_contact_page()
-    app.contact.update_first_contact(ContactData(firstname = "UPD Alex", lastname = "UPD Ivanov", address = "UPD Mockow City", email1 = "UPD testmail@mail.ru", email2 = "UPD testmail2@mail.ru", email3 = "UPD testmail3@mail.ru", homephone ="UPD 12345", mobilephone = "UPD 54321", workphone = "UPD 67890", fax = "UPD 09876"))
+    contact= ContactData(firstname = "UPD Alex", lastname = "UPD Ivanov", address = "UPD Mockow City", email1 = "UPD testmail@mail.ru", email2 = "UPD testmail2@mail.ru", email3 = "UPD testmail3@mail.ru", homephone ="UPD 12345", mobilephone = "UPD 54321", workphone = "UPD 67890", fax = "UPD 09876")
+    contact.id = old_contacts [0].id
+    app.contact.update_first_contact(contact)
     new_contacts = app.contact.get_contact_list()
-    assert len(old_contacts)  == len(new_contacts)
+    assert len(old_contacts) == len(new_contacts)
+    old_contacts[0]= contact
+
