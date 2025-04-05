@@ -61,7 +61,6 @@ class ContactHelper:
 
     def update_contact_by_index(self,index,contact):
         wd = self.app.wd
-        self.select_contact_by_index(index)
         # edit contact
         wd.find_elements_by_xpath("//img[@alt='Edit']")[index].click()
         self.fill_contact_data(contact)
