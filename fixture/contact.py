@@ -92,7 +92,8 @@ class ContactHelper:
                 cells = row.find_elements_by_tag_name("td")
                 lastname = cells[1].text
                 firstname = cells[2].text
-                id = cells[0].find_element_by_name("selected[]").get_attribute("value")
+                #id = cells[0].find_element_by_name("selected[]").get_attribute("value")
+                id = row.find_element_by_name("selected[]").get_attribute("value")
                 address = cells[3].text
                 all_emails = cells[4].text
                 all_phones = cells[5].text
