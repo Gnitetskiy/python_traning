@@ -13,7 +13,7 @@ class Application:
         elif browser == "ie":
             self.wd = webdriver.Ie()
         else:
-            raise ValueError("Unrecognozed browser %s" % browser)
+            raise ValueError("Unrecognized browser %s" % browser)
         self.session = SessionHelper(self)
         self.group = GroupHelper(self)
         self.contact = ContactHelper(self)
