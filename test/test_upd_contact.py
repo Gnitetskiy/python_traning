@@ -1,7 +1,7 @@
 from model.new_contact_data import ContactData
 from random import randrange
 
-def test_upd_first_contact(app, db):
+def test_upd_first_contact(app, db,check_ui):
     if len(db.get_contact_list()) == 0:
         app.contact.open_add_new_page()
         app.contact.fill_contact_data(ContactData(firstname="Alex", lastname="Ivanov", address="Mockow City", email1="testmail@mail.ru",
@@ -17,4 +17,6 @@ def test_upd_first_contact(app, db):
     assert len(old_contacts) == len(new_contacts)
     old_contacts[index] = contact
     assert sorted(old_contacts, key=ContactData.id_or_max) == sorted(new_contacts, key=ContactData.id_or_max)
+    if check_ui:
+        assert sorted(old_contacts, key=ContactData.id_or_max) == sorted(app.contact.get_contact_list(), key=ContactData.id_or_max)
 
