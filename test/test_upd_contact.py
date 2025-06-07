@@ -1,5 +1,5 @@
 from model.new_contact_data import ContactData
-from random import randrange
+import random
 
 def test_upd_first_contact(app, db,check_ui):
     if len(db.get_contact_list()) == 0:
@@ -9,13 +9,12 @@ def test_upd_first_contact(app, db,check_ui):
                         workphone="67890", fax="09876"))
         app.contact.enter_add_new_contact()
     old_contacts = db.get_contact_list()
-    index = randrange(len(old_contacts))
-    contact = ContactData(firstname="UPD Alex", lastname="UPD Ivanov")
-    contact.id = old_contacts[index].id
-    app.contact.update_contact_by_index(index, contact)
+    contact = random.choice(old_contacts)
+    contact= ContactData(firstname="UPD Alex", lastname="UPD Ivanov", id= contact.id)
+    app.contact.update_contact_by_id(contact.id, contact)
     new_contacts = db.get_contact_list()
     assert len(old_contacts) == len(new_contacts)
-    old_contacts[index] = contact
+    old_contacts= list(map(lambda i: contact if i.id == contact.id else i, old_contacts ))
     assert sorted(old_contacts, key=ContactData.id_or_max) == sorted(new_contacts, key=ContactData.id_or_max)
     if check_ui:
         assert sorted(old_contacts, key=ContactData.id_or_max) == sorted(app.contact.get_contact_list(), key=ContactData.id_or_max)
