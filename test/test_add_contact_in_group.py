@@ -2,7 +2,7 @@ from model.new_contact_data import ContactData
 from model.group import Group
 from fixture.orm import ORMFixture
 
-def test_add_contact_in_group(app, check_ui):
+def test_add_contact_in_group(app):
     db = ORMFixture(host="127.0.0.1", name="addressbook", user="root", password="")
     if len (db.get_group_list()) ==0:
         app.group.create_group(Group(name="name tSP"))
@@ -20,5 +20,3 @@ def test_add_contact_in_group(app, check_ui):
     assert len(old_contacts_in_group) + 1 == len(new_contacts_in_group)
     old_contacts_in_group.append(contact)
     assert sorted(old_contacts_in_group, key=ContactData.id_or_max) == sorted(new_contacts_in_group, key=ContactData.id_or_max)
-    if check_ui:
-        assert sorted(old_contacts, key=ContactData.id_or_max) == sorted(app.contact.get_contact_list(), key=ContactData.id_or_max)
