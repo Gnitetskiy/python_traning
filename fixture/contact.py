@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from model.new_contact_data import ContactData
+from selenium.webdriver.support.ui import Select
 import re
 
 class ContactHelper:
@@ -23,6 +24,13 @@ class ContactHelper:
         self.change_field_value("mobile", new_contact_data.mobilephone)
         self.change_field_value("work", new_contact_data.workphone)
         self.change_field_value("fax", new_contact_data.fax)
+        return new_contact_data
+
+    def add_contact_in_group(self):
+        wd = self.app.wd
+        select = Select(wd.find_element(By.NAME, "new_group"))
+        select.select_by_visible_text("name tSP")
+
 
     def change_field_value(self, field_name, text):
         wd = self.app.wd
