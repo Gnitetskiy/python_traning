@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from model.group import Group
+from selenium.webdriver.support.ui import Select
 import time
 
 
@@ -137,3 +138,11 @@ class GroupHelper:
                 id = element.find_element(By.NAME, "selected[]").get_attribute("value")
                 self.group_cache.append(Group(name=text, id=id))
         return list(self.group_cache)
+
+    def open_group(self):
+        wd = self.app.wd
+        select = Select(wd.find_element(By.NAME, "group"))
+        select.select_by_visible_text("name tSP")
+
+
+

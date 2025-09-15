@@ -121,7 +121,6 @@ class ContactHelper:
                 cells = row.find_elements(By.TAG_NAME, "td")
                 lastname = cells[1].text
                 firstname = cells[2].text
-                #id = cells[0].find_element(By.NAME, "selected[]").get_attribute("value")
                 id = row.find_element(By.NAME, "selected[]").get_attribute("value")
                 address = cells[3].text
                 all_emails = cells[4].text
@@ -166,3 +165,11 @@ class ContactHelper:
         mobilephone = re.search("M: (.*)", text).group(1)
         workphone = re.search("W: (.*)", text).group(1)
         return ContactData(homephone=homephone, workphone=workphone, mobilephone=mobilephone)
+
+    def delete_contact_from_group(self):
+        wd = self.app.wd
+        wd.find_element(By.NAME, "remove").click()
+
+
+
+
